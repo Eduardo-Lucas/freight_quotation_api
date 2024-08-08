@@ -1,0 +1,7 @@
+# Ignore Python files
+*.pyc
+*.pyo
+__pycache__/
+*.py[cod]
+*$py.class
+freight_env/
