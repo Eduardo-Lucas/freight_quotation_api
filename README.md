@@ -1,4 +1,4 @@
-# My Python Application
+# freight_quotation_api
 
 ## Overview
 
