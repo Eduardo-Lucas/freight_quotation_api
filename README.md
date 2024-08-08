@@ -48,7 +48,7 @@ This project is a Python application that uses Pydantic for settings management.
 
 2. Run the application:
    ```sh
-   python main.py
+   uvicorn app.main:app --reload
    ```
 
 ## Configuration
