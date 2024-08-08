@@ -20,8 +20,8 @@ This project is a Python application that uses Pydantic for settings management.
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
+   git clone https://github.com/yourusername/freight_quotation_api.git
+   cd freight_quotation_api
    ```
 
 2. Create a virtual environment:
@@ -50,9 +50,3 @@ This project is a Python application that uses Pydantic for settings management.
    ```sh
    uvicorn app.main:app --reload
    ```
-
-## Configuration
-
-The application uses Pydantic's `BaseSettings` for configuration. You can configure the application by creating a `.env` file in the root directory of the project.
-
-Example `.env` file:
