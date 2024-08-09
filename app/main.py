@@ -9,6 +9,7 @@ app.include_router(token.router, prefix="/api/v1")
 app.include_router(freight.router, prefix=settings.API_V1_STR, tags=["Freight"])
 app.include_router(partners.router, prefix=settings.API_V1_STR, tags=["Partners"])
 
+
 @app.get("/")
 async def root():
     return {"message": "Freight Quotation API"}
