@@ -1,20 +1,19 @@
-from fastapi import APIRouter, Depends
-from app.models.freight import FreightRequest, FreightResponse, ShippingLabelRequest
-from app.services.freight_service import calculate_freight, generate_shipping_label
-from app.auth.auth import get_current_user
+# app/api/v1/freight.py
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.services.freight_service import create_freight, get_freight
+from app.models.freight import FreightRequest
+from app.database import get_db
 
 router = APIRouter()
 
+@router.post("/freight/")
+async def create_freight_record(request: FreightRequest, db: Session = Depends(get_db)):
+    return create_freight(db, request.dict())
 
-@router.post("/freight/", response_model=FreightResponse)
-async def get_freight_quote(
-    request: FreightRequest, user: str = Depends(get_current_user)
-):
-    return calculate_freight(request)
-
-
-@router.post("/shipping-label/", response_model=dict)
-async def create_shipping_label(
-    request: ShippingLabelRequest, user: str = Depends(get_current_user)
-):
-    return generate_shipping_label(request.dict())
+@router.get("/freight/{freight_id}")
+async def read_freight_record(freight_id: int, db: Session = Depends(get_db)):
+    freight = get_freight(db, freight_id)
+    if not freight:
+        raise HTTPException(status_code=404, detail="Freight not found")
+    return freight
